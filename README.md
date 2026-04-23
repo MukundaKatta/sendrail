@@ -1,32 +1,47 @@
 # SendRail
 
-> Send money home. Instantly. Cheaply.
+Send money home. Instantly. Cheaply. Stablecoin rails from the US and GCC to India and the Philippines.
 
-Stablecoin rails from the US and GCC to India and the Philippines. Settles in seconds, not days.
+**Status:** v0 skeleton — landing page + cost comparison route. Full product not yet wired.
 
-## What it does
+**Landing:** https://sendrail.vercel.app
 
-- **Seconds, not days** — USDC under the hood. You see INR or PHP arrive on the other side.
-- **A fraction of Western Union** — Fees measured in cents, not percents of your hard-earned money.
-- **Works from any phone** — No crypto wallet needed. Debit card in, local bank account out.
+---
 
-## Why
+## Stack
 
-Fintech. Part of a 20-product exploration of high-demand consumer and SMB markets.
+| Layer | Choice |
+|---|---|
+| Framework | Next.js 15 (App Router) |
+| Language | TypeScript (strict) |
+| Styling | Tailwind v4 |
+| Fonts | Inter via `next/font/google` |
+| Hosting | Vercel (zero config) |
+| Waitlist | https://waitlist-api-sigma.vercel.app |
 
-## Status
+## Run locally
 
-Landing page live. Product in planning.
+```bash
+pnpm install
+pnpm dev
+```
 
-- **Live**: https://mukundakatta.github.io/sendrail/
+Open http://localhost:3000.
 
-## Stack (when built)
+## Deploy
 
-- Next.js 16 (App Router)
-- Supabase for auth + data
-- Stripe for payments
-- Deployed on Vercel
+Push to `main` — Vercel picks it up automatically. No environment variables required.
 
-## Local preview
+## Routes
 
-Just open `index.html` in a browser — it is a static landing page with the Tailwind CDN.
+| Route | Description |
+|---|---|
+| `/` | Landing page (original copy + design preserved) |
+| `/try` | v0 cost comparison — enter amount + destination, see mocked exchange rate, fee ($0.50 flat), delivery time vs. Western Union |
+| `/api/waitlist` | `POST { email }` → forwards to waitlist-api-sigma |
+
+## What's next
+
+- Wire real exchange-rate feeds behind `/try`
+- KYC / identity verification flow
+- Payment processing + stablecoin settlement
